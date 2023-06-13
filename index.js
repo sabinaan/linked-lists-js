@@ -13,6 +13,13 @@ class LinkedList {
         console.log(pointer.nextNode)
 
     }
+    prepend(value){
+        let newNode = new Node(value)
+        newNode.nextNode = this.head.nextNode
+        this.head.nextNode = newNode
+        console.log(this.head)
+
+    }
 
     size(){
         let counter = 0
@@ -22,6 +29,17 @@ class LinkedList {
             counter++
         }
         return counter
+    }
+
+    toString(){
+        let string = ""
+        let pointer = this.head
+        while (pointer.nextNode != null){
+            pointer = pointer.nextNode
+            string = `${string} ( ${pointer.value} ) ->`
+        } 
+        string = `${string} null`
+        return string
     }
 
 }
@@ -39,6 +57,11 @@ newLinkedList.append("test1")
 newLinkedList.append("test2")
 console.log("the size of newLinkedkList is " + newLinkedList.size())
 newLinkedList.append("test3")
+console.log(newLinkedList.toString())
 newLinkedList.append("test4")
+newLinkedList.prepend("test5")
+newLinkedList.prepend("test6")
 
 console.log("the size of newLinkedkList is " + newLinkedList.size())
+
+console.log(newLinkedList.toString())
