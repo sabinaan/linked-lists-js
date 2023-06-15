@@ -16,8 +16,6 @@ class LinkedList {
             }
             pointer.nextNode = newNode
         }
-
-
     }
 
     prepend(value){
@@ -28,9 +26,6 @@ class LinkedList {
             newNode.nextNode = this.head
             this.head = newNode
         }
-
-
-
     }
 
     size(){
@@ -47,6 +42,40 @@ class LinkedList {
             return counter
         }
 
+    }
+
+    at(index){
+        let pointer = this.head;
+        if (index <= 0) return null
+        for (let i = 1; i < index; i++){
+            if (pointer.nextNode == null){
+                return null
+            }
+            else{
+                pointer = pointer.nextNode
+            }
+        }
+        return pointer
+    }
+
+    contains(value){
+        let pointer = this.head;
+        while (pointer != null){
+            if (pointer.value == value) return true
+            pointer = pointer.nextNode
+        }
+        return false
+    }
+
+    find(value){
+        let index = 1
+        let pointer = this.head;
+        while(pointer != null){
+            if (pointer.value == value) return index
+            pointer = pointer.nextNode
+            index++
+        }
+        return null
     }
 
     tail(){
@@ -79,12 +108,16 @@ class Node{
 
 
 let newLinkedList = new LinkedList
+console.log(newLinkedList.at(1))
 newLinkedList.append("test1")
 newLinkedList.append("test2")
 console.log(newLinkedList.toString())
 console.log("the size of newLinkedkList is " + newLinkedList.size())
+
 newLinkedList.append("test3")
+console.log(newLinkedList.at(0))
 console.log(newLinkedList.toString())
+
 newLinkedList.append("test4")
 newLinkedList.prepend("test5")
 newLinkedList.prepend("test6")
@@ -93,3 +126,16 @@ console.log(newLinkedList.toString())
 console.log("the size of newLinkedkList is " + newLinkedList.size())
 
 console.log(newLinkedList.tail())
+console.log("nodes at index 0, 1, 7:")
+console.log(newLinkedList.at(0))
+console.log(newLinkedList.at(1))
+console.log(newLinkedList.at(7))
+
+console.log(newLinkedList.contains("test1"))
+console.log(newLinkedList.contains("test4"))
+console.log(newLinkedList.contains("test"))
+
+console.log(newLinkedList.find("test1"))
+console.log(newLinkedList.find("test5"))
+console.log(newLinkedList.find("test4"))
+console.log(newLinkedList.find("test"))
