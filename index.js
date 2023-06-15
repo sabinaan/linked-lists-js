@@ -43,6 +43,17 @@ class LinkedList {
         }
 
     }
+    listHead(){
+        return this.head
+     }
+
+     listTail(){
+        let pointer = this.head
+        while (pointer.nextNode != null){
+            pointer = pointer.nextNode
+        }
+        return pointer
+    }
 
     at(index){
         let pointer = this.head;
@@ -56,6 +67,16 @@ class LinkedList {
             }
         }
         return pointer
+    }
+
+    pop(){
+        if (this.head == null) return
+        if (this.head.nextNode == null){
+            this.head = null
+            return
+        }
+        console.log("size: " + this.size())
+        this.at(this.size()-1).nextNode = null
     }
 
     contains(value){
@@ -78,17 +99,10 @@ class LinkedList {
         return null
     }
 
-    tail(){
-        let pointer = this.head
-        while (pointer.nextNode != null){
-            pointer = pointer.nextNode
-        }
-        return pointer
-    }
-
     toString(){
         let string = ""
         let pointer = this.head
+        if (pointer == null) return `-> null`
         while (pointer.nextNode != null){
             string = `${string} ( ${pointer.value} ) ->`
             pointer = pointer.nextNode
@@ -110,12 +124,19 @@ class Node{
 let newLinkedList = new LinkedList
 console.log(newLinkedList.at(1))
 newLinkedList.append("test1")
+console.log("pop test1")
+newLinkedList.pop()
 newLinkedList.append("test2")
+
+console.log(newLinkedList.toString())
+
+console.log("pop test2")
+newLinkedList.pop()
+
 console.log(newLinkedList.toString())
 console.log("the size of newLinkedkList is " + newLinkedList.size())
 
 newLinkedList.append("test3")
-console.log(newLinkedList.at(0))
 console.log(newLinkedList.toString())
 
 newLinkedList.append("test4")
@@ -124,8 +145,10 @@ newLinkedList.prepend("test6")
 console.log(newLinkedList.toString())
 
 console.log("the size of newLinkedkList is " + newLinkedList.size())
-
-console.log(newLinkedList.tail())
+console.log("tail;")
+console.log(newLinkedList.listTail())
+console.log("head")
+console.log(newLinkedList.listHead())
 console.log("nodes at index 0, 1, 7:")
 console.log(newLinkedList.at(0))
 console.log(newLinkedList.at(1))
@@ -139,3 +162,8 @@ console.log(newLinkedList.find("test1"))
 console.log(newLinkedList.find("test5"))
 console.log(newLinkedList.find("test4"))
 console.log(newLinkedList.find("test"))
+
+newLinkedList.pop()
+console.log(newLinkedList.toString())
+newLinkedList.pop()
+console.log(newLinkedList.toString())
