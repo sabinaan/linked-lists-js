@@ -111,6 +111,21 @@ class LinkedList {
         return string
     }
 
+    insertAt(value, index){
+        if (index == 1){
+            this.prepend(value)
+            return
+        }
+        let pointer = this.at(index - 1)
+        if (pointer != null){
+            let newNode = new Node(value);
+            newNode.nextNode = pointer.nextNode;
+            pointer.nextNode = newNode;
+        }else{
+            console.log("Index is not valid")
+        }
+    }
+
 }
 
 class Node{
@@ -124,8 +139,6 @@ class Node{
 let newLinkedList = new LinkedList
 console.log(newLinkedList.at(1))
 newLinkedList.append("test1")
-console.log("pop test1")
-newLinkedList.pop()
 newLinkedList.append("test2")
 
 console.log(newLinkedList.toString())
@@ -163,7 +176,10 @@ console.log(newLinkedList.find("test5"))
 console.log(newLinkedList.find("test4"))
 console.log(newLinkedList.find("test"))
 
-newLinkedList.pop()
+
+newLinkedList.insertAt("test7", 4)
 console.log(newLinkedList.toString())
-newLinkedList.pop()
+newLinkedList.insertAt("test8", 1)
+console.log(newLinkedList.toString())
+newLinkedList.insertAt("test9", 12)
 console.log(newLinkedList.toString())
