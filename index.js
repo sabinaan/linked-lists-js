@@ -70,13 +70,14 @@ class LinkedList {
     }
 
     pop(){
-        if (this.head == null) return
-        if (this.head.nextNode == null){
+        if (this.head == null) return // LinkedList is empty
+        if (this.head.nextNode == null){ //Linkedlist has only one node
             this.head = null
-            return
+        }else{
+            console.log("size: " + this.size())
+            this.at(this.size()-1).nextNode = null
         }
-        console.log("size: " + this.size())
-        this.at(this.size()-1).nextNode = null
+
     }
 
     contains(value){
@@ -124,6 +125,22 @@ class LinkedList {
         }else{
             console.log("Index is not valid")
         }
+    }
+
+    removeAt(index){
+        let size = this.size()
+        console.log({index, size})
+        if (index == 1){  // remove the first node
+            this.head = this.at(2)
+        }else 
+        if (index > 1 && index < size){ 
+            let pointer = this.at(index - 1)
+            pointer.nextNode = this.at(index + 1)
+        }else
+        if (index == size){ // remove the last node
+            this.pop()
+        }
+
     }
 
 }
@@ -176,10 +193,21 @@ console.log(newLinkedList.find("test5"))
 console.log(newLinkedList.find("test4"))
 console.log(newLinkedList.find("test"))
 
-
+console.log("insertAt")
 newLinkedList.insertAt("test7", 4)
 console.log(newLinkedList.toString())
 newLinkedList.insertAt("test8", 1)
 console.log(newLinkedList.toString())
 newLinkedList.insertAt("test9", 12)
 console.log(newLinkedList.toString())
+
+console.log("removeAt")
+newLinkedList.removeAt(5)
+console.log(newLinkedList.toString())
+newLinkedList.removeAt(1)
+console.log(newLinkedList.toString())
+newLinkedList.removeAt(6)
+console.log(newLinkedList.toString())
+newLinkedList.removeAt(5)
+console.log(newLinkedList.toString())
+
