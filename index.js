@@ -74,7 +74,6 @@ class LinkedList {
         if (this.head.nextNode == null){ //Linkedlist has only one node
             this.head = null
         }else{
-            console.log("size: " + this.size())
             this.at(this.size()-1).nextNode = null
         }
 
@@ -129,7 +128,6 @@ class LinkedList {
 
     removeAt(index){
         let size = this.size()
-        console.log({index, size})
         if (index == 1){  // remove the first node
             this.head = this.at(2)
         }else 
@@ -160,7 +158,7 @@ newLinkedList.append("test2")
 
 console.log(newLinkedList.toString())
 
-console.log("pop test2")
+console.log("pop test")
 newLinkedList.pop()
 
 console.log(newLinkedList.toString())
